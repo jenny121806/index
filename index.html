@@ -550,13 +550,15 @@
       border-radius: 4px;
     }
 
-    .sdg-tag {
-      background-color: var(--color-accent-light);
-      color: var(--color-accent);
-      font-size: 0.8rem;
+    .weather-alert {
+      background-color: #fef3c7;
+      border-left: 4px solid #d97706;
+      color: #92400e;
       font-weight: 700;
-      padding: 4px 10px;
+      font-size: 0.88rem;
+      padding: 8px 12px;
       border-radius: 4px;
+      margin-bottom: 12px;
     }
 
     .day-card h3 {
@@ -982,6 +984,7 @@
           <label class="check-item"><input type="checkbox" data-id="chk6"><span>美金現金（帛琉官方通用貨幣為美元 USD，建議準備小額鈔票）</span></label>
           <label class="check-item"><input type="checkbox" data-id="chk7"><span>長袖防曬水母衣、溯溪鞋與個人常用常備藥品</span></label>
           <label class="check-item"><input type="checkbox" data-id="chk8"><span>完成 116/07/14 銘傳大學基河校區行前培訓報到</span></label>
+          <label class="check-item"><input type="checkbox" data-id="chk9"><span>雨衣／防水袋（因應颱風外圍環流與海上陣雨防護）</span></label>
         </div>
       </div>
     </div>
@@ -1161,7 +1164,44 @@
       {
         day: 9,
         date: "116/08/06 (五)",
-        title: "二戰歷史地景與和平永續：貝里琉州（Peleliu）田野行",
+        alert: "因海況不佳，行程已調整",
+        title: "傳統禁漁制度（Bul）與永續漁業社區共管（原 8/10 行程對調）",
+        location: "Ngarchelong, Palau",
+        sdg: "SDG14",
+        sdgLabel: "SDG14 海洋生態",
+        desc: "前往帛琉最北端雅切隆州（Ngarchelong），訪談社區漁業巡守隊，了解傳統 Bul 禁漁令如何與現代海洋法規結合。"
+      },
+      {
+        day: 10,
+        date: "116/08/07 (六)",
+        title: "傳統農法「芋頭田（Mesei）」與女性生態智慧",
+        location: "Ngiwal, Palau",
+        sdg: "SDG15",
+        sdgLabel: "SDG15 陸域生態",
+        desc: "走入部落濕地芋頭田（Mesei），體驗帛琉女性世代相傳的有機農耕與水土保持系統，了解芋頭田如何過濾陸地泥沙保護外海珊瑚。"
+      },
+      {
+        day: 11,
+        date: "116/08/08 (日)",
+        title: "社群微訪談實戰：與帛琉青年組織對話",
+        location: "Palau Community College, Koror, Palau",
+        sdg: "SDG11/12",
+        sdgLabel: "SDG11/12 部落與永續產業",
+        desc: "前往帛琉社區學院（PCC）與當地大學生交流，運用 Photo-Elicitation 照片導引法分享台帛兩地的環境挑戰與青年行動。"
+      },
+      {
+        day: 12,
+        date: "116/08/09 (一)",
+        title: "循環經濟與廢棄物管理：海島資源再生實地參訪",
+        location: "Malakal, Koror, Palau",
+        sdg: "SDG11/12",
+        sdgLabel: "SDG11/12 部落與永續產業",
+        desc: "參訪科羅爾州固體廢棄物處理與玻璃回收工坊，觀察海島國家如何將廢棄玻璃重製為工藝品，落實循環經濟。"
+      },
+      {
+        day: 13,
+        date: "116/08/10 (二)",
+        title: "二戰歷史地景與和平永續：貝里琉州（Peleliu）田野行（原 8/06 行程對調）",
         location: "Peleliu, Palau",
         sdg: "SDG15",
         sdgLabel: "SDG15 陸域生態",
@@ -1266,11 +1306,13 @@
 
       filtered.forEach(item => {
         const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.location)}`;
+        const alertHtml = item.alert ? `<div class="weather-alert">${item.alert}</div>` : "";
 
         const card = document.createElement("article");
         card.className = "day-card";
         card.innerHTML = `
           <div>
+            ${alertHtml}
             <div class="day-card-header">
               <span class="day-badge">Day ${item.day}｜${item.date}</span>
               <span class="sdg-tag">${item.sdgLabel}</span>
@@ -1486,5 +1528,3 @@
   </script>
 </body>
 </html>
-
-
